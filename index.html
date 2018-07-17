@@ -69,6 +69,14 @@
             <p>
                 Depending on what type of connection you have established with your board (websocket or serial) the second group of button may behave differently. On a serial connection all the results from file operations will be printed on the console. On the websocket connection it will be a mix: list files will print the files on the console but the load file will load the file content on the text editor.
             </p>
+            <div class="row">
+                <div class="col">
+                    <img src="images/load_file.png" alt="">
+                </div>
+                <div class="col">
+                    <img src="images/loaded_file.png" alt="">
+                </div>
+            </div>
             <p>
                 <strong>IMPORTANT</strong>: Saving files depends on the board having the <code>binascii</code> module installed. On the ESP32 version of MicroPython you download from <a href="http://micropython.org/download">MicroPython's website</a> it comes installed but on the ESP8266 it doesn't. While this is not fixed, please use another tool such as <a href="https://learn.adafruit.com/micropython-basics-load-files-and-run-code/install-ampy">Adafruit's ampy</a> to load <code>binascii</code> to your board.
             </p>
