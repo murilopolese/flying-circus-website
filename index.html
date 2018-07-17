@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Flying Circus - MicroPython IDE</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: #ffffff;
+                color: #111111;
+                font-family: sans-serif;
+                font-size: 16px;
+                line-height: 1.6em;
+            }
+            .content {
+                max-width: 940px;
+                margin: 0 auto;
+                padding: 0 10px;
+            }
+            img {
+                min-width: 100%;
+                max-width: 100%;
+            }
+            .row {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                align-items: center;
+            }
+            .col {
+                flex: 0 1 calc(50% - 8px);
+                margin: 0 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>Flying Circus - MicroPython IDE</h1>
+
+            <img src="images/browser_and_electron.png"></img>
+
+            <h2>What is Flying Circus?</h2>
+            <p>
+                Flying Circus is an open source/free software you can download or use on your browser to connect, execute and save code to a board running MicroPython (REPL).
+            </p>
+            <p>
+                So far Flying Circus can connect to your board via WebSocket if your MicroPython has WebREPL and it's activated and the Electron app version can connect also via USB Serial if your computer can recognize the board as a serial device (check if the correct drivers are installed, if needed).
+            </p>
+            <div class="row">
+                <div class="col">
+                    <img src="images/webrepl_connection.png" alt="">
+                </div>
+                <div class="col">
+                    <img src="images/serial_connection.png" alt="">
+                </div>
+            </div>
+            <p>
+                Once connected you can execute code from the text editor using the "play" and "stop" buttons on the toolbar or by using the console.
+            </p>
+            <p>
+                On the toolbar, there are 2 groups of buttons. The first one contains the "connect", "play", "stop" and "reset" button. On the second group you will find the "list files", "save file", "load file" and "delete file".
+            </p>
+            <div class="row">
+                <div class="col">
+                    <img src="images/connected.png" alt="">
+                </div>
+            </div>
+            <p>
+                Depending on what type of connection you have established with your board (websocket or serial) the second group of button may behave differently. On a serial connection all the results from file operations will be printed on the console. On the websocket connection it will be a mix: list files will print the files on the console but the load file will load the file content on the text editor.
+            </p>
+            <p>
+                <strong>IMPORTANT</strong>: Saving files depends on the board having the <code>binascii</code> module installed. On the ESP32 version of MicroPython you download from <a href="http://micropython.org/download">MicroPython's website</a> it comes installed but on the ESP8266 it doesn't. While this is not fixed, please use another tool such as <a href="https://learn.adafruit.com/micropython-basics-load-files-and-run-code/install-ampy">Adafruit's ampy</a> to load <code>binascii</code> to your board.
+            </p>
+
+            <h2>Downloading Flying Circus</h2>
+            <p>
+                You can download the <a href="https://github.com/murilopolese/flying-circus-electron/releases/latest" target="_blank">latest Electron app for Linux, Raspberry Pi, Windows or OSX here</a>.
+            </p>
+            <p>
+                Or you can use it on <a href="https://flying-circus-web.herokuapp.com" target="_blank">your browser (WebREPL only) here</a>.
+            </p>
+
+            <h2>Source code</h2>
+            <p>
+                You only need to care about this session if you are planning to somehow modify or <a href="https://en.wikipedia.org/wiki/Hacker_culture" target="_blank">hack</a> Flying Circus (I strongly encourage you to do it!).
+            </p>
+            <p>
+                Flying Circus is made out of many packages and components. The main packages are:
+            </p>
+            <ul>
+                <li>
+                    <a href="https://github.com/murilopolese/flying-circus-connection-websocket"><code>flying-circus-connection-websocket</code></a>: A websocket connection class that exposes the methods expected by the UI. It should work both on the browser and on a nodejs environment.
+                </li>
+                <li>
+                    <a href="https://github.com/murilopolese/flying-circus-connection-serial"><code>flying-circus-connection-serial</code></a>: A USB Serial connection class that exposes the methods expected by the UI. This class will only work on a nodejs environment.
+                </li>
+                <li>
+                    <a href="https://github.com/murilopolese/flying-circus-ui"><code>flying-circus-ui</code></a>: The front-end for Flying Circus. It's a Polymer 2.6 application with a few custom components but mostly "paper" and "iron" components.
+                </li>
+                <li>
+                    <a href="https://github.com/murilopolese/flying-circus-web"><code>flying-circus-web</code></a>: A webserver that hosts <code>flying-circus-ui</code> and connect it to the <code>flying-circus-connection-websocket</code>. No USB Serial is available yet.
+                </li>
+                <li>
+                    <a href="https://github.com/murilopolese/flying-circus-electron"><code>flying-circus-electron</code></a>: An Electron app that wraps the <code>flying-circus-ui</code> connecting it to <code>flying-circus-connection-websocket</code> and <code>flying-circus-connection-serial</code>.
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

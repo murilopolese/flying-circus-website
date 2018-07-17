@@ -1,0 +1,14 @@
+{
+  "name": "flying-circus-website",
+  "version": "1.0.0",
+  "description": "Website for Flying Circus project",
+  "repository": "https://github.com/murilopolese/flying-circus-website",
+  "author": "Murilo Polese <murilopolese@gmail.com>",
+  "license": "ISC",
+  "scripts": {
+    "start": "./node_modules/.bin/http-server"
+  },
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
